@@ -131,8 +131,7 @@ const StaffsList = () => {
       sortable: true,
       cell: row => staffRole(row.roles)
       //cell: row => row.roles[0].name
-    }
-    /*,
+    },
     {
       name: 'Actions',
       minWidth: '220px',
@@ -150,7 +149,7 @@ const StaffsList = () => {
           </div>
         </div>
       )
-    }*/
+    }
   ]
   
   // ** Function in get data on search query change

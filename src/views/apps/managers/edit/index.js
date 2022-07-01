@@ -120,7 +120,7 @@ const StaffEdit = () => {
         <ToastContent staff={staff.name} />,
         { transition: Slide, hideProgressBar: true, autoClose: 3000 }
       )
-      history.push('/apps/staff/list')
+      history.push('/apps/managers/list')
     }).catch(err => {
       // console.log(err.response.data.errors)
       // setErrors(err.response.data.errors)

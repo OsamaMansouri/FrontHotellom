@@ -50,6 +50,7 @@ const StaffAdd = () => {
         if (staff.name) formData.append('name', staff.name)
         if (staff.email) formData.append('email', staff.email)
         if (staff.role) formData.append('role', staff.role)
+        if (staff.etat !== null)formData.append('etat', 'active')
         if (staff.etat) formData.append('etat', staff.etat)
 
         //for (const entry of formData.entries()) console.log(entry)

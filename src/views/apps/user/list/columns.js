@@ -118,6 +118,12 @@ export const columns = [
     cell: row => row.reason
   },
   {
+    name: 'Code Hotel',
+    selector: 'code',
+    sortable: true,
+    cell: row => row.code
+  },
+  {
     name: 'Actions',
     minWidth: '350px',
     cell: row => (

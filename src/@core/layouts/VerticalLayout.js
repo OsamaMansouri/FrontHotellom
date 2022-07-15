@@ -64,6 +64,7 @@ const VerticalLayout = props => {
   const isHidden = layoutStore.menuHidden
 
   // ** Toggles Menu Collapsed
+  
   const setMenuCollapsed = val => dispatch(handleMenuCollapsed(val))
 
   // ** Handles Content Width
@@ -73,6 +74,15 @@ const VerticalLayout = props => {
   const setIsHidden = val => dispatch(handleMenuHidden(val))
 
   //** This function will detect the Route Change and will hide the menu on menu item click
+  const sidebarevent = () => {
+    if (menuVisibility === true) {
+      setMenuVisibility(false)
+     } else {
+      setMenuVisibility(true)
+     }
+    
+  }
+
   useEffect(() => {
     if (menuVisibility && windowWidth < 1200) {
       setMenuVisibility(false)
@@ -161,6 +171,17 @@ const VerticalLayout = props => {
         )}
       >
         <div className='navbar-container d-flex content'>
+
+        <div className='bookmark-wrapper d-flex align-items-center'>
+          <ul className='navbar-nav d-xl-none'>
+            <li className='mobile-menu me-auto nav-item'>
+              <a className='nav-menu-main menu-toggle hidden-xs is-active nav-link' onClick={sidebarevent}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ficon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+              </a>
+            </li>
+          </ul>
+         </div>
+
           {navbar ? navbar : <NavbarComponent setMenuVisibility={setMenuVisibility} skin={skin} setSkin={setSkin} />}
         </div>
       </Navbar>

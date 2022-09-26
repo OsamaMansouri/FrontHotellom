@@ -137,6 +137,9 @@ const ArticlesList = () => {
                 <Button.Ripple style={{padding: "0.386rem 0.9rem !important"}} color='primary'>
                   Edit
                 </Button.Ripple>
+                <Button.Ripple style={btnStyle} color='warning' onClick={() => handleConfirmDelete(row.id)} >
+                  Delete
+              </Button.Ripple>
               </Link>
               {/* <Button.Ripple style={btnStyle} color='warning' onClick={() => handleConfirmDelete(row.id)} >
                   Delete

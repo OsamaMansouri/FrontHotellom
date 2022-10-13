@@ -315,7 +315,7 @@ const ArticleAdd = () => {
                                         type="textarea"
                                         id="description"
                                         placeholder='Enter article description'
-                                        required
+                                        
                                         onChange={(e) => setArticle({ ...article, description: e.target.value })}
                                     />
                                     {errors.description && <FormFeedback>{errors.description[0]}</FormFeedback>}

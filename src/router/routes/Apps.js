@@ -405,6 +405,24 @@ const AppRoutes = [
       resource: 'Categories'
     }
   },
+  //Request Hotel
+
+  {
+    path: '/apps/requesthotel/list',
+    component: lazy(() => import('../../views/apps/requesthotel/list')),
+    meta: {
+      action: 'read',
+      resource: 'RequestHotel'
+    }
+  },
+  {
+    path: '/apps/requesthotel/add',
+    component: lazy(() => import('../../views/apps/requesthotel/add')),
+    meta: {
+      action: 'edit',
+      resource: 'RequestHotel'
+    }
+  },
 
   // Demmands
   {

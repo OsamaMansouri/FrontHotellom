@@ -57,6 +57,7 @@ const OffersList = () => {
         .then(res => { 
           setData(res.data)
           setDataCount(res.data.length)
+          console.log(res.data)
         })
         .catch(err => { console.log(err) })
 
@@ -202,7 +203,7 @@ const OffersList = () => {
       selector: 'name',
       sortable: true,
       cell: row => (
-        <span className='font-weight-bold' >{`${row.user.firstname} ${row.user.lastname}`}</span>
+        <span className='font-weight-bold' >{``}</span>
       ) 
     },
     {

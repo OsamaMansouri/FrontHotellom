@@ -65,6 +65,7 @@ const ArticlesList = () => {
               .get(`/request_hotel`)
               .then(res => { 
                 setData(res.data)
+                setDataCount(res.data.length)
               })
               .catch(err => { console.log(err) })
           }
@@ -87,12 +88,14 @@ const ArticlesList = () => {
     const userData = JSON.parse(localStorage.getItem('userData'))
     if (userData) {
       axiosInstance
-        .get(`/request_hotel/`)
+        .get(`/request_hotel`)
         .then(res => { 
           setData(res.data)
           console.log(res.data)
-          })
+          setDataCount(res.data.length)
+        })
         .catch(err => { console.log(err) })
+
     }
 
   }, [])
@@ -105,9 +108,14 @@ const ArticlesList = () => {
       sortable: true,
       cell: row => (
         <div className='d-flex justify-content-left align-items-center'>
-          <Avatar className='mr-1' img={row.demmand.icon} width='32' height='32' />
+          <Avatar className='mr-1' img={"https://api.hotellom.com/img/".concat('', row.demmand.icon)} width='32' height='32' />
           <div className='d-flex flex-column'>
-            <span className='font-weight-bold'>{row.demmand.name}</span>
+            <Link
+              to={`/apps/requesthotel/edit/${row.demmand.name}`}
+              className='user-name text-truncate mb-0'
+            >
+              <span className='font-weight-bold'>{row.demmand.name}</span>
+            </Link>
           </div>
         </div>
       )
@@ -126,12 +134,12 @@ const ArticlesList = () => {
       cell: row => (
         <div>
           <div className='d-flex align-items-space-between'>
-              {/*<Link to={`/apps/demmands/edit/${row.id}`}>
+              {/* <Link to={`/apps/requesthotel/edit/${row.id}`}>
                 <Button.Ripple style={{padding: "0.386rem 0.9rem !important"}} color='primary'>
                   Edit
                 </Button.Ripple>
-              </Link>*/}
-               <Button.Ripple style={btnStyle} color='warning' onClick={() => handleConfirmDelete(row.id)} >
+              </Link> */}
+              <Button.Ripple style={btnStyle} color='warning' onClick={() => handleConfirmDelete(row.id)} >
                   Delete
               </Button.Ripple>
           </div>

@@ -44,6 +44,7 @@ const CategoriesList = () => {
         .then(res => { 
           setData(res.data)
           setDataCount(res.data.length)
+          console.log(res.data)
         })
         .catch(err => { console.log(err) })
     }

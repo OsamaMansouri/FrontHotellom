@@ -108,7 +108,7 @@ const ArticlesList = () => {
       sortable: true,
       cell: row => (
         <div className='d-flex justify-content-left align-items-center'>
-          <Avatar className='mr-1' img={"https://api.hotellom.com/img/".concat('', row.demmand.icon)} width='32' height='32' />
+          <Avatar className='mr-1' img={row.demmand.icon} width='32' height='32' />
           <div className='d-flex flex-column'>
             <Link
               to={`/apps/requesthotel/edit/${row.demmand.name}`}

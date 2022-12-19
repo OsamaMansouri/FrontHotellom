@@ -213,7 +213,7 @@ const RoomsList = () => {
                     cell: row => (
                                 <div className='d-flex align-items-center'>
                                    {/* { rooms.map((item) => { return (<a className="btn btn-success" onClick={(e) => donwloadQrcode(`https://api.hotellom.com/img/hotels/hotel-${row.reference}.png`)}>Qrcode</a>) }) } */}
-                                   <a className="btn btn-success" onClick={(e) => donwloadQrcode(`https://api.hotellom.com/img/rooms/room-${row.qrcode}.png`)}>Qrcode</a>
+                                   <a className="btn btn-success" onClick={(e) => donwloadQrcode(`https://apitest.hotellom.com/img/rooms/room-${row.room_number}${row.qrcode}.png`)}>Qrcode</a>
                                 </div>
                                
                     )

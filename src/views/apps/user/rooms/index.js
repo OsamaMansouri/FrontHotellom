@@ -28,12 +28,11 @@ const RoomsList = () => {
     const [searchValue, setSearchValue] = useState('')
     const [filteredData, setFilteredData] = useState([])
     const MySwal = withReactContent(Swal)
-
+    const {Id} = useParams()
     //** ComponentDidMount
     useEffect(() => {
         if (isUserLoggedIn() !== null) {
             const user = JSON.parse(localStorage.getItem('userData'))
-
             const config = {
                 headers: {
                     Authorization: `Bearer ${user.accessToken}`
@@ -41,15 +40,28 @@ const RoomsList = () => {
             }
 
             // fetch rooms
-            axiosInstance.get(`/getRoomsByHotel?web=5`, config).then(res => {
+            axiosInstance.get(`/getRoomsByHotel/${Id}?web=5`, config).then(res => {
                 setRooms(res.data)
                 setData(res.data)
                 setDataCount(res.data.length)
+                console.log(res.data)
             }).catch(err => {
                 console.log(err)
             })
         }
     }, [])
+
+    const donwloadQrcode = async (source) => {
+
+        const fileName = source.split('/').pop()
+        const el = document.createElement("a")
+        el.setAttribute("href", source)
+        el.setAttribute("target", '_black')
+        el.setAttribute("download", fileName)
+        document.body.appendChild(el)
+        el.click()
+        el.remove()
+      }
 
     // ** Function in get data on page change
     const handlePagination = page => {
@@ -192,6 +204,18 @@ const RoomsList = () => {
                                 <div className='d-flex align-items-center'>
                                     <a className="btn btn-danger" onClick={() => deleteRoom(row.id)}>delete</a>
                                 </div>
+                               
+                    )
+                },
+                {
+                    name: 'Qrcode',
+                    minWidth: '100px',  
+                    cell: row => (
+                                <div className='d-flex align-items-center'>
+                                   {/* { rooms.map((item) => { return (<a className="btn btn-success" onClick={(e) => donwloadQrcode(`https://api.hotellom.com/img/hotels/hotel-${row.reference}.png`)}>Qrcode</a>) }) } */}
+                                   <a className="btn btn-success" onClick={(e) => donwloadQrcode(`https://api.hotellom.com/img/rooms/room-${row.qrcode}.png`)}>Qrcode</a>
+                                </div>
+                               
                     )
                 }
             ]

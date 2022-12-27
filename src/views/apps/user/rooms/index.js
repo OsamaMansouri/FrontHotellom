@@ -199,11 +199,18 @@ const RoomsList = () => {
                 },
                 {
                     name: 'Actions',
-                    minWidth: '100px',
+                    minWidth: '350px',
                     cell: row => (
-                                <div className='d-flex align-items-center'>
-                                    <a className="btn btn-danger" onClick={() => deleteRoom(row.id)}>delete</a>
+                                <div className='d-flex align-items-space-between'>
+                                    <a className="btn btn-danger"  onClick={() => deleteRoom(row.id)}>delete</a>
+                                    <Link to={`/apps/rooms/edit/${Id}/${row.id}`}>
+                                        <Button.Ripple className="ml-1" color='primary'>
+                                            Edit
+                                        </Button.Ripple>
+                                    </Link>
+                                
                                 </div>
+                                
                                
                     )
                 },
@@ -244,11 +251,11 @@ const RoomsList = () => {
                         xl='6'
                         className='d-flex align-items-sm-center justify-content-lg-end justify-content-start flex-lg-nowrap flex-wrap flex-sm-row flex-column pr-lg-1 p-0 mt-lg-0 mt-1'
                         >
-                        {/* <Link to="/apps/rooms/add">
+                         <Link to={`/apps/rooms/add/${Id}`}>
                             <Button.Ripple color='primary'>
                             Add New Room
                             </Button.Ripple>
-                        </Link> */}
+                        </Link>
                         </Col>
                     </Row>
                     </div>

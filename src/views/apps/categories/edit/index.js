@@ -30,6 +30,7 @@ const CategoryEdit = () => {
     { id } = useParams(),
     [category, setCategory] = useState({}),
     [errors, setErrors] = useState({}),
+    [shops, setShops] = useState([]),
     history = useHistory()
 
   // ** Function to get category on mount
@@ -38,6 +39,13 @@ const CategoryEdit = () => {
       .get(`/categories/${id}`)
       .then(response => setCategory(response.data))
       .catch(err => console.log(err))
+
+      axiosInstance
+      .get(`/shops?web=5`)
+      .then(res => { 
+        setShops(res.data)
+      })
+      .catch(err => { console.log(err) })
   }, [])
  
   const handleFormSubmit = () => {
@@ -52,6 +60,7 @@ const CategoryEdit = () => {
     formData.append("_method", 'PUT')
     //formData.append('hotel_id', category.hotel_id)
     if (category.name) formData.append('name', category.name)
+    if (category.shop_id) formData.append('shop_id', category.shop_id)
     if (category.Sequence) formData.append('Sequence', category.Sequence)
     if (category.startTime) formData.append('startTime', category.startTime)
     if (category.endTime) formData.append('endTime', category.endTime)
@@ -88,7 +97,7 @@ const CategoryEdit = () => {
         <div className='app-user-list'>
           <h1>Edit category</h1>
           <Row>
-            <Col sm='6'>
+            <Col sm='4'>
               <Label for="name">Name</Label>
               <Input
                 invalid={errors.name !== undefined}
@@ -102,7 +111,7 @@ const CategoryEdit = () => {
               />
               {errors.name && <FormFeedback>{errors.name[0]}</FormFeedback>}
             </Col>
-            <Col sm='6'>
+            <Col sm='4'>
               <Label for="sequence">Sequence</Label>
               <Input
                 invalid={errors.Sequence !== undefined}
@@ -116,6 +125,23 @@ const CategoryEdit = () => {
               />
               {errors.Sequence && <FormFeedback> {errors.Sequence[0]} </FormFeedback>}
             </Col>
+            <Col sm='4'>
+              <Label for="types">Select Shop Type</Label>
+              <Input
+                  type="select"
+                  name="shop_id"
+                  id="shop_id"
+                  required
+                  onChange={(e) => setCategory({ ...category, shop_id: e.target.value})}
+                  value={category.shop_id}
+              >
+                  <option value='0' selected>Select type</option>
+                  {
+                      shops.map(shop => <option key={shop.id} value={shop.id}>{shop.name}</option>)
+                  }
+                  {console.log(category.shop_id)}
+              </Input>
+          </Col>
           </Row>
           <br />
           <Row>

@@ -90,14 +90,6 @@ const ArticlesList = () => {
       cell: row => (
         <Badge color={`light-${row.status === "pending" ? "warning" : "success"}`}>{row.status}</Badge>
       )
-    },
-    {
-      name: 'Option',
-      selector: 'option',
-      sortable: true,
-      cell: row => (
-        <span className='font-weight-bold' >{`${row.option.name}`}</span>
-      )
     }
   
   ]

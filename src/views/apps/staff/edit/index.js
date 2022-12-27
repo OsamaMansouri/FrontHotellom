@@ -108,6 +108,7 @@ const StaffEdit = () => {
     formData.append("_method", 'PUT')
     formData.append('hotel_id', staff.hotel.id)
     formData.append('user_id', id)
+    if (staff.password) formData.append('password', staff.password)
     if (staff.name) formData.append('name', staff.name)
     if (staff.role) formData.append('role', staff.role)
     if (staff.email) formData.append('email', staff.email)
@@ -168,7 +169,7 @@ const StaffEdit = () => {
               <Col sm='4'>
                   <Label for="role">Role</Label>
                   <select defaultValue={'0'} name="role" className="form-control" id="role" onChange={(e) => setStaff({ ...staff, role: e.target.value })}>
-                      <option value='0' disabled>Select Role</option>
+                      {/* <option value='0' disabled>Select Role</option> */}
                       <option value="4" selected={`${ (staff.roles === undefined || staff.roles[0].name === "receptionist") ? "selected" : ""}`}>Receptionist</option>
                       <option value="5" selected={`${ (staff.roles === undefined || staff.roles[0].name === "rooms-servant") ? "selected" : ""}`}>Rooms service</option>
                       <option value="6" selected={`${ (staff.roles === undefined || staff.roles[0].name === "housekeeping") ? "selected" : ""}`}>HK / Eng</option>
@@ -190,6 +191,20 @@ const StaffEdit = () => {
                 <Button.Ripple style={btnStyle} color='success' onClick={() => resetPassword(staff.id)} >
                     Reset Password
                 </Button.Ripple>
+              </Col>
+              <Col sm='6'>
+                  <Label for="name">Password</Label>
+                  <Input
+                      invalid={errors.password !== undefined}
+                      type="text"
+                      name="password"
+                      id="password"
+                      placeholder='Enter new password'
+                      required
+                      value={staff.password || ''}
+                      onChange={(e) => setStaff({ ...staff, password: e.target.value })}
+                  />
+                  {errors.password && <FormFeedback>{errors.password[0]}</FormFeedback>}
               </Col>
           </Row>
           <br />

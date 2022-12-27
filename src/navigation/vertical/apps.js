@@ -31,6 +31,14 @@ export default [
     icon: <ShoppingBag size={20} />
   },
   {
+    id: 'RequestHotel',
+    title: 'Request',
+    action: 'manage',
+    resource: 'RequestHotel',
+    navLink: '/apps/requesthotel/list',
+    icon: <ShoppingBag size={20} />
+  },
+  {
     id: 'clientsdemmands',
     title: 'Clients requests',
     action: 'manage',
@@ -64,7 +72,7 @@ export default [
   }, */
   {
     id: 'staffs',
-    title: 'Staffs',
+    title: 'Users',
     icon: <Users size={20} />,
     action: 'read',
     resource: 'Staffs',

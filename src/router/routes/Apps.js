@@ -176,12 +176,30 @@ const AppRoutes = [
     }
   },
   {
-    path: '/apps/user/rooms/:id',
+    path: '/apps/user/rooms/:Id',
     component: lazy(() => import('../../views/apps/user/rooms')),
     meta: {
       action: 'read',
       resource: 'Users',
       navLink: '/apps/user/rooms'
+    }
+  },
+  {
+    path: '/apps/rooms/add/:id',
+    component: lazy(() => import('../../views/apps/user/rooms/add')),
+    meta: {
+      action: 'edit',
+      resource: 'Users',
+      navLink: '/apps/rooms/add'
+    }
+  },
+  {
+    path: '/apps/rooms/edit/:id/:room_id',
+    component: lazy(() => import('../../views/apps/user/rooms/edit')),
+    meta: {
+      action: 'edit',
+      resource: 'Users',
+      navLink: '/apps/rooms/edit'
     }
   },
   {
@@ -403,6 +421,24 @@ const AppRoutes = [
     meta: {
       action: 'read',
       resource: 'Categories'
+    }
+  },
+  //Request Hotel
+
+  {
+    path: '/apps/requesthotel/list',
+    component: lazy(() => import('../../views/apps/requesthotel/list')),
+    meta: {
+      action: 'read',
+      resource: 'RequestHotel'
+    }
+  },
+  {
+    path: '/apps/requesthotel/add',
+    component: lazy(() => import('../../views/apps/requesthotel/add')),
+    meta: {
+      action: 'edit',
+      resource: 'RequestHotel'
     }
   },
 

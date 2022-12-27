@@ -185,6 +185,24 @@ const AppRoutes = [
     }
   },
   {
+    path: '/apps/rooms/add/:id',
+    component: lazy(() => import('../../views/apps/user/rooms/add')),
+    meta: {
+      action: 'edit',
+      resource: 'Users',
+      navLink: '/apps/rooms/add'
+    }
+  },
+  {
+    path: '/apps/rooms/edit/:id/:room_id',
+    component: lazy(() => import('../../views/apps/user/rooms/edit')),
+    meta: {
+      action: 'edit',
+      resource: 'Users',
+      navLink: '/apps/rooms/edit'
+    }
+  },
+  {
     path: '/apps/user/license/:id',
     component: lazy(() => import('../../views/apps/user/licence')),
     meta: {

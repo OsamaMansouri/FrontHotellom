@@ -31,6 +31,8 @@ const ArticleAdd = () => {
     // ** State
     const [article, setArticle] = useState({})
     const [categories, setCategories] = useState([])
+    const [ShopType, SetShopType] = useState([])
+    const [shop_id, Setshop_id] = useState()
     const [options, setOptions] = useState([])
     const [errors, setErrors] = useState({})
     const history = useHistory()
@@ -51,6 +53,22 @@ const ArticleAdd = () => {
     //** ComponentDidMount
     useEffect(() => {
         if (isUserLoggedIn() !== null) {
+            //fetch shops
+            axiosInstance.get(`/shops?web=5`).then(response => { 
+                SetShopType(response.data)
+              })
+              .catch(err => { console.log(err) })
+        }
+    }, [])
+
+    const handleshoptype = (e) => {
+        const getshopid = e.target.value
+        console.log(getshopid)
+        Setshop_id(getshopid)
+    }
+
+    useEffect(() => {
+        if (isUserLoggedIn() !== null) {
             const user = JSON.parse(localStorage.getItem('userData'))
 
             const config = {
@@ -58,15 +76,14 @@ const ArticleAdd = () => {
                     Authorization: `Bearer ${user.accessToken}`
                 }
             }
-
             // fetch categories
-            axiosInstance.get(`/categories?hotel_id=${user.hotel_id}&web=5`, config).then(res => {
+            axiosInstance.get(`/categories_by_shop/${shop_id}`, config).then(res => {
                 setCategories(res.data)
             }).catch(err => {
                 console.log(err.response.data)
             })
         }
-    }, [])
+    }, [shop_id])
 
     const verifyFile = (files) => {
         if (files && files.length > 0) {
@@ -323,6 +340,23 @@ const ArticleAdd = () => {
                             </Row>
                             <br/>
                             <Row>
+                                <Col sm='6'>
+                                    <Label for="category_id">Shop Type</Label>
+                                    <Input
+                                        invalid={errors.category_id !== undefined}
+                                        type="select"
+                                        id="category_id"
+                                        defaultValue="0"
+                                        required
+                                        onChange={handleshoptype}
+                                    >
+                                        <option value='0' disabled>Select Category</option>
+                                        {
+                                            ShopType.map(shop => <option key={shop.id} value={shop.id}>{shop.name}</option>)
+                                        }
+                                    </Input>
+                                    {errors.category_id && <FormFeedback> {errors.category_id[0]} </FormFeedback>}
+                                </Col>
                                 <Col sm='6'>
                                     <Label for="category_id">Category</Label>
                                     <Input

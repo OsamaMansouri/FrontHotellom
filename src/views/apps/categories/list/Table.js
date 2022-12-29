@@ -118,13 +118,13 @@ const CategoriesList = () => {
         </div>
       )
     },
-    // {
-    //   name: 'Shop Type',
-    //   minWidth: '172px',
-    //   selector: 'shop_id',
-    //   sortable: true,
-    //   cell: row => row.shop_id
-    // },
+    {
+      name: 'Shop Type',
+      minWidth: '172px',
+      selector: 'shop_id.name',
+      sortable: true,
+      cell: row => row.shop_id.name
+    },
     {
       name: 'Time start',
       minWidth: '172px',

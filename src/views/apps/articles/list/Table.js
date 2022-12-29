@@ -132,6 +132,12 @@ const ArticlesList = () => {
       cell: row => row.category.name
     },
     {
+      name: 'Article Type', 
+      selector: 'category.shop_id.name',
+      sortable: true,
+      cell: row => row.category.shop_id.name
+    },
+    {
       name: 'Actions',
       minWidth: '220px',
       cell: row => (

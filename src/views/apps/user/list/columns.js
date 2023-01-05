@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom'
 // ** Custom Components
 import Avatar from '@components/avatar'
+import axiosInstance from '../../../../@core/api/axiosInstance'
 // ** Store & Actions
 import { getUser, deleteUser } from '../store/action'
 import { store } from '@store/storeConfig/store'
@@ -79,7 +80,15 @@ const donwloadQrcode = async (source) => {
   el.click()
   el.remove()
 }
+const openInNewTab = url => {
+  window.open(url, '_blank', 'noopener,noreferrer')
+}
 
+const Submit = (reference, code) => {
+
+  openInNewTab(`http://localhost:8000/pdfhotel/${code}/${reference}`)
+
+}
 export const columns = [
   {
     name: 'Name',
@@ -125,7 +134,7 @@ export const columns = [
   },
   {
     name: 'Actions',
-    minWidth: '350px',
+    minWidth: '500px',
     cell: row => (
       <div>
         <div className='d-flex align-items-space-between'>
@@ -148,6 +157,15 @@ export const columns = [
                 View QR
               </Button.Ripple>
             </Link>
+            
+              <Button.Ripple 
+                style={btnStyle} 
+                color='success'
+                onClick={(e) => { Submit(row.reference, row.code) }}
+                >
+                Generate PDF
+              </Button.Ripple>
+          
         </div>
       </div>
       

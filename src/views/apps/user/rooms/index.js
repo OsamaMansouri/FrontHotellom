@@ -63,6 +63,16 @@ const RoomsList = () => {
         el.remove()
       }
 
+      const openInNewTab = url => {
+        window.open(url, '_blank', 'noopener,noreferrer')
+      }
+      
+      const Submit = (room_number, qrcode) => {
+        const user = JSON.parse(localStorage.getItem('userData'))
+        openInNewTab(`http://localhost:8000/pdfroom/${user.hotel.code}/${room_number}/${qrcode}`)
+        
+      }
+
     // ** Function in get data on page change
     const handlePagination = page => {
         setCurrentPage(page.selected)
@@ -208,6 +218,13 @@ const RoomsList = () => {
                                             Edit
                                         </Button.Ripple>
                                     </Link>
+                                    <Button.Ripple 
+                                    className="ml-1"
+                                        color='success'
+                                        onClick={(e) => { Submit(row.room_number, row.qrcode) }}
+                                        >
+                                        Generate PDF
+                                    </Button.Ripple>
                                 
                                 </div>
                                 
@@ -220,7 +237,7 @@ const RoomsList = () => {
                     cell: row => (
                                 <div className='d-flex align-items-center'>
                                    {/* { rooms.map((item) => { return (<a className="btn btn-success" onClick={(e) => donwloadQrcode(`https://api.hotellom.com/img/hotels/hotel-${row.reference}.png`)}>Qrcode</a>) }) } */}
-                                   <a className="btn btn-success" onClick={(e) => donwloadQrcode(`https://apitest.hotellom.com/img/rooms/room-${row.room_number}${row.qrcode}.png`)}>Qrcode</a>
+                                   <a className="btn btn-success" onClick={(e) => donwloadQrcode(`https://api.hotellom.com/img/rooms/room-${row.room_number}${row.qrcode}.png`)}>Qrcode</a>
                                 </div>
                                
                     )

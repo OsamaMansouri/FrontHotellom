@@ -160,7 +160,7 @@ export const columns = [
             
               <Button.Ripple 
                 style={btnStyle} 
-                color='success'
+                color='primary'
                 onClick={(e) => { Submit(row.reference, row.code) }}
                 >
                 Generate PDF

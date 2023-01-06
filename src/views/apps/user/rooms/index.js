@@ -220,7 +220,7 @@ const RoomsList = () => {
                                     </Link>
                                     <Button.Ripple 
                                     className="ml-1"
-                                        color='success'
+                                        color='primary'
                                         onClick={(e) => { Submit(row.room_number, row.qrcode) }}
                                         >
                                         Generate PDF

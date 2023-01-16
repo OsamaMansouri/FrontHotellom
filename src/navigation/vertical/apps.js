@@ -1,4 +1,4 @@
-import { ShoppingCart, Package, FileText, Columns, Users, Circle, ShoppingBag, Award, Settings, Type } from 'react-feather'
+import { ShoppingCart, Package, FileText, Columns, Users, Circle, ShoppingBag, Award, Settings, Type, Box } from 'react-feather'
 
 export default [
   {
@@ -109,6 +109,56 @@ export default [
     resource: 'Managers',
     navLink: '/apps/managers/list',
     icon: <Users size={20} />
+  },
+  {
+    id: 'roomService',
+    title: 'Room Service',
+    action: 'read',
+    resource: 'Categories',
+    icon: <Box size={20} />,
+     children: [ 
+      {
+        id: 'categories',
+        title: 'Categories',
+        icon: <Circle size={12} />,
+        navLink: '/apps/categoryRoomService/list',
+        action: 'manage',
+        resource: 'Categories'
+      },
+       {
+        id: 'articles',
+        title: 'Articles',
+        icon: <Circle size={12} />,
+        navLink: '/apps/articlesRoomService/list',
+         action: 'manage', 
+         resource: 'Articles'
+      }
+    ] 
+  },
+  {
+    id: 'Spa',
+    title: 'Spa',
+    action: 'read',
+    resource: 'Categories',
+    icon: <Box size={20} />,
+     children: [ 
+      {
+        id: 'categories',
+        title: 'Categories',
+        icon: <Circle size={12} />,
+        navLink: '/apps/categoriesSpa/list',
+        action: 'manage',
+        resource: 'Categories'
+      },
+       {
+        id: 'articles',
+        title: 'Articles',
+        icon: <Circle size={12} />,
+        navLink: '/apps/articlesSpa/list',
+         action: 'manage', 
+         resource: 'Articles'
+      }
+    ] 
   }
 
 ]

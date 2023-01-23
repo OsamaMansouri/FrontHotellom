@@ -34,7 +34,7 @@ export default [
     id: 'RequestHotel',
     title: 'Request',
     action: 'manage',
-    resource: 'RequestHotel',
+    resource: 'ClientsDemmands',
     navLink: '/apps/requesthotel/list',
     icon: <ShoppingBag size={20} />
   },

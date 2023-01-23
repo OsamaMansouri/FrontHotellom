@@ -533,7 +533,7 @@ const AppRoutes = [
     component: lazy(() => import('../../views/apps/requesthotel/list')),
     meta: {
       action: 'read',
-      resource: 'RequestHotel'
+      resource: 'ClientsDemmands'
     }
   },
   {
@@ -541,7 +541,7 @@ const AppRoutes = [
     component: lazy(() => import('../../views/apps/requesthotel/add')),
     meta: {
       action: 'edit',
-      resource: 'RequestHotel'
+      resource: 'ClientsDemmands'
     }
   },
 

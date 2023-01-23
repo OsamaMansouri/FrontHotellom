@@ -105,7 +105,7 @@ const ArticlesList = () => {
       minWidth: '300px',
       cell: row => (
         <div className='d-flex justify-content-left align-items-center'>
-          <Avatar className='mr-1' img={row.image} width='32' height='32' />
+          <Avatar className='mr-1' img={'https://api.hotellom.com/img/'.concat(row.image)} width='32' height='32' />
           <div className='d-flex flex-column'>
             <span className='font-weight-bold'>{row.name}</span>
           </div>

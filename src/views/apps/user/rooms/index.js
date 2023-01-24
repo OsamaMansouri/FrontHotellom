@@ -69,7 +69,7 @@ const RoomsList = () => {
       
       const Submit = (room_number, qrcode) => {
         const user = JSON.parse(localStorage.getItem('userData'))
-        openInNewTab(`http://localhost:8000/pdfroom/${user.hotel.code}/${room_number}/${qrcode}`)
+        openInNewTab(`https://api.hotellom.com/pdfroom/${user.hotel.code}/${room_number}/${qrcode}`)
         
       }
 

@@ -84,9 +84,9 @@ const openInNewTab = url => {
   window.open(url, '_blank', 'noopener,noreferrer')
 }
 
-const Submit = (reference, code) => {
+const Submit = (reference, code, name) => {
 
-  openInNewTab(`http://localhost:8000/pdfhotel/${code}/${reference}`)
+  openInNewTab(`https://api.hotellom.com/pdfhotel/${code}/${reference}/${name}`)
 
 }
 export const columns = [
@@ -161,7 +161,7 @@ export const columns = [
               <Button.Ripple 
                 style={btnStyle} 
                 color='primary'
-                onClick={(e) => { Submit(row.reference, row.code) }}
+                onClick={(e) => { Submit(row.reference, row.code, row.name) }}
                 >
                 Generate PDF
               </Button.Ripple>

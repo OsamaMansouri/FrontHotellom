@@ -187,16 +187,10 @@ const StaffEdit = () => {
                   {errors.etat && <FormFeedback> {errors.etat[0]} </FormFeedback>}
               </Col>
               <Col sm='4'>
-                <Label for="resetPaswword">Reset password</Label><br />
-                <Button.Ripple style={btnStyle} color='success' onClick={() => resetPassword(staff.id)} >
-                    Reset Password
-                </Button.Ripple>
-              </Col>
-              <Col sm='6'>
                   <Label for="name">Password</Label>
                   <Input
                       invalid={errors.password !== undefined}
-                      type="text"
+                      type="password"
                       name="password"
                       id="password"
                       placeholder='Enter new password'
@@ -209,7 +203,12 @@ const StaffEdit = () => {
           </Row>
           <br />
           <Row>
-              <Col sm='12' className='d-flex justify-content-start align-items-center'>
+          <Col sm='2'>
+                <Button.Ripple style={btnStyle} color='success' onClick={() => resetPassword(staff.id)} >
+                    Reset Password
+                </Button.Ripple>
+              </Col>
+              <Col sm='6' className='d-flex justify-content-start align-items-center'>
                   <Button color='primary' onClick={handleFormSubmit}>Update User</Button>
               </Col>
           </Row>

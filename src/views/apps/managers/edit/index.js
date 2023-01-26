@@ -109,13 +109,14 @@ const StaffEdit = () => {
     formData.append('hotel_id', staff.hotel.id)
     formData.append('user_id', id)
     if (staff.name) formData.append('name', staff.name)
-    if (staff.role) formData.append('role', staff.role)
+    if (staff.password) formData.append('password', staff.password)
     if (staff.email) formData.append('email', staff.email)
     if (staff.etat) formData.append('etat', staff.etat)
+    // if (staff.role) formData.append('role', 2)
 
     for (const entry of formData.entries()) console.log(entry)
 
-    axiosInstance.post(`/staff/update`, formData, config).then(res => {
+    axiosInstance.post(`/manager/update`, formData, config).then(res => {
       toast.success(
         <ToastContent staff={staff.name} />,
         { transition: Slide, hideProgressBar: true, autoClose: 3000 }
@@ -162,10 +163,11 @@ const StaffEdit = () => {
                   />
                   {errors.email && <FormFeedback> {errors.email[0]} </FormFeedback>}
               </Col>
+              
           </Row>
           <br />
           <Row>
-              <Col sm='4'>
+              {/* <Col sm='4'>
                   <Label for="role">Role</Label>
                   <select defaultValue={'0'} name="role" className="form-control" id="role" onChange={(e) => setStaff({ ...staff, role: e.target.value })}>
                       <option value='0' disabled>Select Role</option>
@@ -175,8 +177,22 @@ const StaffEdit = () => {
                       <option value="7" selected={`${ (staff.roles === undefined || staff.roles[0].name === "manager") ? "selected" : ""}`}>Manager</option>
                   </select>
                   {errors.role && <FormFeedback> {errors.role[0]} </FormFeedback>}
+              </Col> */}
+              <Col sm='6'>
+                  <Label for="password">Password</Label>
+                  <Input
+                      invalid={errors.password !== undefined}
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder='Enter new password'
+                      required
+                      value={staff.password || ''}
+                      onChange={(e) => setStaff({ ...staff, password: e.target.value })}
+                  />
+                  {errors.password && <FormFeedback>{errors.password[0]}</FormFeedback>}
               </Col>
-              <Col sm='4'>
+              <Col sm='6'>
                   <Label for="etat">Status</Label>
                   <select defaultValue={'0'} name="etat" className="form-control" id="etat" onChange={(e) => setStaff({ ...staff, etat: e.target.value })}>
                       <option value='active'>Select Status</option>
@@ -185,12 +201,12 @@ const StaffEdit = () => {
                   </select>
                   {errors.etat && <FormFeedback> {errors.etat[0]} </FormFeedback>}
               </Col>
-              <Col sm='4'>
+              {/* <Col sm='4'>
                 <Label for="resetPaswword">Reset password</Label><br />
                 <Button.Ripple style={btnStyle} color='success' onClick={() => resetPassword(staff.id)} >
                     Reset Password
                 </Button.Ripple>
-              </Col>
+              </Col> */}
           </Row>
           <br />
           <Row>

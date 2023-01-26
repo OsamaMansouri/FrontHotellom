@@ -135,7 +135,7 @@ const StaffEdit = () => {
         <div className='app-user-list'>
           <h1>Edit staff</h1>
           <Row>
-              <Col sm='6'>
+              <Col sm='4'>
                   <Label for="name">Name</Label>
                   <Input
                       invalid={errors.name !== undefined}
@@ -149,7 +149,7 @@ const StaffEdit = () => {
                   />
                   {errors.name && <FormFeedback>{errors.name[0]}</FormFeedback>}
               </Col>
-              <Col sm='6'>
+              <Col sm='4'>
                   <Label for="email">Email</Label>
                   <Input
                       invalid={errors.email !== undefined}
@@ -163,31 +163,8 @@ const StaffEdit = () => {
                   />
                   {errors.email && <FormFeedback> {errors.email[0]} </FormFeedback>}
               </Col>
-          </Row>
-          <br />
-          <Row>
               <Col sm='4'>
-                  <Label for="role">Role</Label>
-                  <select defaultValue={'0'} name="role" className="form-control" id="role" onChange={(e) => setStaff({ ...staff, role: e.target.value })}>
-                      {/* <option value='0' disabled>Select Role</option> */}
-                      <option value="4" selected={`${ (staff.roles === undefined || staff.roles[0].name === "receptionist") ? "selected" : ""}`}>Receptionist</option>
-                      <option value="5" selected={`${ (staff.roles === undefined || staff.roles[0].name === "rooms-servant") ? "selected" : ""}`}>Rooms service</option>
-                      <option value="6" selected={`${ (staff.roles === undefined || staff.roles[0].name === "housekeeping") ? "selected" : ""}`}>HK / Eng</option>
-                      <option value="7" selected={`${ (staff.roles === undefined || staff.roles[0].name === "manager") ? "selected" : ""}`}>Manager</option>
-                  </select>
-                  {errors.role && <FormFeedback> {errors.role[0]} </FormFeedback>}
-              </Col>
-              <Col sm='4'>
-                  <Label for="etat">Status</Label>
-                  <select defaultValue={'0'} name="etat" className="form-control" id="etat" onChange={(e) => setStaff({ ...staff, etat: e.target.value })}>
-                      <option value='active'>Select Status</option>
-                      <option value="active" selected={`${ staff.etat === "active" ? "selected" : ""}`}>active</option>
-                      <option value="inactive" selected={`${ staff.etat === "inactive" ? "selected" : ""}`}>inactive</option>
-                  </select>
-                  {errors.etat && <FormFeedback> {errors.etat[0]} </FormFeedback>}
-              </Col>
-              <Col sm='4'>
-                  <Label for="name">Password</Label>
+                  <Label for="password">Password</Label>
                   <Input
                       invalid={errors.password !== undefined}
                       type="password"
@@ -203,11 +180,34 @@ const StaffEdit = () => {
           </Row>
           <br />
           <Row>
-          <Col sm='2'>
+              <Col sm='6'>
+                  <Label for="role">Role</Label>
+                  <select defaultValue={'0'} name="role" className="form-control" id="role" onChange={(e) => setStaff({ ...staff, role: e.target.value })}>
+                      {/* <option value='0' disabled>Select Role</option> */}
+                      <option value="4" selected={`${ (staff.roles === undefined || staff.roles[0].name === "receptionist") ? "selected" : ""}`}>Receptionist</option>
+                      <option value="5" selected={`${ (staff.roles === undefined || staff.roles[0].name === "rooms-servant") ? "selected" : ""}`}>Rooms service</option>
+                      <option value="6" selected={`${ (staff.roles === undefined || staff.roles[0].name === "housekeeping") ? "selected" : ""}`}>HK / Eng</option>
+                      <option value="7" selected={`${ (staff.roles === undefined || staff.roles[0].name === "manager") ? "selected" : ""}`}>Manager</option>
+                  </select>
+                  {errors.role && <FormFeedback> {errors.role[0]} </FormFeedback>}
+              </Col>
+              <Col sm='6'>
+                  <Label for="etat">Status</Label>
+                  <select defaultValue={'0'} name="etat" className="form-control" id="etat" onChange={(e) => setStaff({ ...staff, etat: e.target.value })}>
+                      <option value='active'>Select Status</option>
+                      <option value="active" selected={`${ staff.etat === "active" ? "selected" : ""}`}>active</option>
+                      <option value="inactive" selected={`${ staff.etat === "inactive" ? "selected" : ""}`}>inactive</option>
+                  </select>
+                  {errors.etat && <FormFeedback> {errors.etat[0]} </FormFeedback>}
+              </Col>
+          </Row>
+          <br />
+          <Row>
+              {/* <Col sm='2'>
                 <Button.Ripple style={btnStyle} color='success' onClick={() => resetPassword(staff.id)} >
                     Reset Password
                 </Button.Ripple>
-              </Col>
+              </Col> */}
               <Col sm='6' className='d-flex justify-content-start align-items-center'>
                   <Button color='primary' onClick={handleFormSubmit}>Update User</Button>
               </Col>

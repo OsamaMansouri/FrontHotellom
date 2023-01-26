@@ -63,6 +63,7 @@ const ManagerAdd = () => {
 
         if (staff.name) formData.append('name', staff.name)
         if (staff.email) formData.append('email', staff.email)
+        if (staff.password) formData.append('password', staff.password)
         if (staff.role) formData.append('role', 2)
         if (staff.etat) formData.append('etat', 1)
 
@@ -120,7 +121,7 @@ const ManagerAdd = () => {
                 <div className='app-user-list'>
                     <h1>Add new user</h1>
                     <Row>
-                        <Col sm='6'>
+                        <Col sm='4'>
                             <Label for="name">Name</Label>
                             <Input
                                 invalid={errors.name !== undefined}
@@ -133,7 +134,7 @@ const ManagerAdd = () => {
                             />
                             {errors.name && <FormFeedback>{errors.name[0]}</FormFeedback>}
                         </Col>
-                        <Col sm='6'>
+                        <Col sm='4'>
                             <Label for="email">Email</Label>
                             <Input
                                 invalid={errors.email !== undefined}
@@ -145,6 +146,19 @@ const ManagerAdd = () => {
                                 onChange={(e) => setStaff({ ...staff, email: e.target.value })}
                             />
                             {errors.email && <FormFeedback> {errors.email[0]} </FormFeedback>}
+                        </Col>
+                        <Col sm='4'>
+                            <Label for="password">Password</Label>
+                            <Input
+                                invalid={errors.password !== undefined}
+                                type="password"
+                                name="password"
+                                id="password"
+                                placeholder='Enter user password'
+                                required
+                                onChange={(e) => setStaff({ ...staff, password: e.target.value })}
+                            />
+                            {errors.password && <FormFeedback>{errors.password[0]}</FormFeedback>}
                         </Col>
                     </Row>
                     <br />

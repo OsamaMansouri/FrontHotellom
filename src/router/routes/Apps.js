@@ -176,7 +176,7 @@ const AppRoutes = [
     }
   },
   {
-    path: '/apps/user/rooms/:Id',
+    path: '/apps/user/rooms/:Id/:code',
     component: lazy(() => import('../../views/apps/user/rooms')),
     meta: {
       action: 'read',

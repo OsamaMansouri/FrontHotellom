@@ -28,7 +28,7 @@ const RoomsList = () => {
     const [searchValue, setSearchValue] = useState('')
     const [filteredData, setFilteredData] = useState([])
     const MySwal = withReactContent(Swal)
-    const {Id} = useParams()
+    const {Id, code} = useParams()
     //** ComponentDidMount
     useEffect(() => {
         if (isUserLoggedIn() !== null) {
@@ -69,7 +69,7 @@ const RoomsList = () => {
       
       const Submit = (room_number, qrcode) => {
         const user = JSON.parse(localStorage.getItem('userData'))
-        openInNewTab(`https://api.hotellom.com/pdfroom/${user.hotel.code}/${room_number}/${qrcode}`)
+        openInNewTab(`https://api.hotellom.com/pdfroom/${code}/${room_number}/${qrcode}`)
         
       }
 

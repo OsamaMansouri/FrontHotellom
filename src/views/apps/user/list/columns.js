@@ -143,7 +143,7 @@ export const columns = [
                 Edit
               </Button.Ripple>
             </Link>
-            <Link to={`/apps/user/rooms/${row.id}`}>
+            <Link to={`/apps/user/rooms/${row.id}/${row.code}`}>
               <Button.Ripple style={btnStyle} color='secondary'>
                 Rooms
               </Button.Ripple>

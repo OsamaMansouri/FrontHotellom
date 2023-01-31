@@ -64,7 +64,7 @@ const RoomsEdit = () => {
                    <Row>
                        <Col sm="12">
                            <Row>
-                           <Col sm='4'>
+                           <Col sm='12'>
                             <Label for="room_number">Room Number</Label>
                             <Input
                                 type="number"

@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from 'react'
 import axiosInstance from '../../../../@core/api/axiosInstance'
 import { Row, Col, Button, Card, CardImg, CardBody, Label, Input } from 'reactstrap'
+import { useHistory } from 'react-router-dom'
 // ** Config
 import themeConfig from '@configs/themeConfig'
 import { toast, Slide } from 'react-toastify'
@@ -24,13 +25,14 @@ const ToastContent = () => (
 
 const Profile = () => {
   const [data, setData] = useState(null)
+  const history = useHistory()
   const [block, setBlock] = useState(false)
   const [userD, setUserD] = useState({}),
   [errors, setErrors] = useState({})
 
   const userData = JSON.parse(localStorage.getItem('userData'))
   useEffect(() => {
-    //console.log(userData)
+    console.log(userData)
     setUserD(userData)
   }, [])
 
@@ -42,11 +44,13 @@ const Profile = () => {
     if (userD.lastname) formData.append('lastname', userD.lastname)
     if (userD.email) formData.append('email', userD.email)
     if (userD.phone_number) formData.append('phone_number', userD.phone_number)
+    if (userD.password) formData.append('password', userD.password)
     //for (const entry of formData.entries()) console.log(entry)
 
     axiosInstance.post(`/update/profile`, formData).then(res => {
       setUserD(res.data)
       localStorage.setItem('userData', JSON.stringify(res.data))
+      history.push('/apps/staff/list')
       toast.success(
         <ToastContent />,
         { transition: Slide, hideProgressBar: true, autoClose: 3000 }
@@ -111,19 +115,19 @@ const Profile = () => {
                     </Col>
                   </Row>
                   <Row>
-                    <Col sm='6'>
-                      <Label for="email">Email</Label>
+                  <Col sm='6'>
+                      <Label for="password">Password</Label>
                       <Input 
-                        invalid={errors.email !== undefined}
-                        type="text" 
-                        id="email"
-                        name="email"
-                        placeholder='Enter email'
+                        invalid={errors.password !== undefined}
+                        type="password" 
+                        id="password"
+                        name="password"
+                        placeholder='Enter password'
                         required
-                        value={userD.email || ''}
-                        onChange={(e) => setUserD({ ...userD, email: e.target.value })}
+                        value={userD.password || ''}
+                        onChange={(e) => setUserD({ ...userD, password: e.target.value })}
                       />
-                      {errors.email && <FormFeedback>{errors.email[0]}</FormFeedback>}
+                      {errors.password && <FormFeedback>{errors.password[0]}</FormFeedback>}
                     </Col>
                     <Col sm='6'>
                       <Label for="phone_number">Phone</Label>
@@ -138,6 +142,20 @@ const Profile = () => {
                         onChange={(e) => setUserD({ ...userD, phone_number: e.target.value })}
                       />
                       {errors.phone_number && <FormFeedback>{errors.phone_number[0]}</FormFeedback>}
+                    </Col>
+                    <Col sm='12'>
+                      <Label for="email">Email</Label>
+                      <Input 
+                        invalid={errors.email !== undefined}
+                        type="text" 
+                        id="email"
+                        name="email"
+                        placeholder='Enter email'
+                        required
+                        value={userD.email || ''}
+                        onChange={(e) => setUserD({ ...userD, email: e.target.value })}
+                      />
+                      {errors.email && <FormFeedback>{errors.email[0]}</FormFeedback>}
                     </Col>
                   </Row>
                   <br />

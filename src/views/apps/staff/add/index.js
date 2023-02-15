@@ -28,6 +28,7 @@ const StaffAdd = () => {
     const [userData, setUserData] = useState(null)
     const [staff, setStaff] = useState({})
     const [errors, setErrors] = useState({})
+    const [showhide, setShowhide] = useState('')
     const history = useHistory()
 
     //** ComponentDidMount
@@ -47,6 +48,7 @@ const StaffAdd = () => {
 
         const formData = new FormData()
         formData.append('hotel_id', userData.hotel_id)
+        formData.append('departement', staff.departement)
         if (staff.name) formData.append('name', staff.name)
         if (staff.email) formData.append('email', staff.email)
         if (staff.role) formData.append('role', staff.role)
@@ -117,17 +119,30 @@ const StaffAdd = () => {
                     </Row>
                     <br />
                     <Row>
-                        <Col sm='6'>
+                        <Col sm='3'>
                             <Label for="role">Role</Label>
-                            <select defaultValue={'0'} name="role" className="form-control" id="role" onChange={(e) => setStaff({ ...staff, role: e.target.value })}>
+                            <select defaultValue={'0'} name="role" className="form-control" id="role" onChange={(e) => { setStaff({ ...staff, role: e.target.value });  setShowhide(e.target.value) }}>
                                 <option value='0' disabled>Select Role</option>
                                 <option value="receptionist">Receptionist</option>
                                 <option value="rooms-servant">Rooms service</option>
                                 <option value="housekeeping">HK / Eng</option>
-                                <option value="manager">Manager</option>
+                                <option value="super_manager">Manager</option>
                             </select>
                             {errors.role && <FormFeedback> {errors.role[0]} </FormFeedback>}
                         </Col>
+                        {
+                          showhide === 'super_manager' && (
+                            <Col sm='3'>
+                            <Label for="role">Department</Label>
+                            <select  name="role" className="form-control" id="role" onChange={(e) => setStaff({ ...staff, departement: e.target.value })}>
+                                <option value='0' disabled>Select Department</option>
+                                <option value="housekeeping">HK / Eng</option>
+                                <option value="rooms-servant">Rooms service</option> 
+                            </select>
+                            {errors.role && <FormFeedback> {errors.role[0]} </FormFeedback>}
+                            </Col>
+                          ) 
+                        }
                         <Col sm='6'>
                             <Label for="etat">Status</Label>
                             <select defaultValue={'0'} name="etat" className="form-control" id="etat" onChange={(e) => setStaff({ ...staff, etat: e.target.value })}>

@@ -50,7 +50,7 @@ const Profile = () => {
     axiosInstance.post(`/update/profile`, formData).then(res => {
       setUserD(res.data)
       localStorage.setItem('userData', JSON.stringify(res.data))
-      history.push('/apps/staff/list')
+      history.push('/apps/user/profile')
       toast.success(
         <ToastContent />,
         { transition: Slide, hideProgressBar: true, autoClose: 3000 }

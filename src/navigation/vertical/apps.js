@@ -30,21 +30,54 @@ export default [
     navLink: '/apps/demmands/list',
     icon: <ShoppingBag size={20} />
   },
+  // {
+  //   id: 'RequestHotel',
+  //   title: 'Request',
+  //   action: 'manage',
+  //   resource: 'ClientsDemmands',
+  //   navLink: '/apps/requesthotel/list',
+  //   icon: <ShoppingBag size={20} />
+  // },
+  // {
+  //   id: 'clientsdemmands',
+  //   title: 'Clients requests',
+  //   action: 'manage',
+  //   resource: 'ClientsDemmands',
+  //   navLink: '/apps/demmands/listRequests',
+  //   icon: <ShoppingBag size={20} />
+  // },
   {
-    id: 'RequestHotel',
+    id: 'Request',
     title: 'Request',
-    action: 'manage',
+    action: 'read',
     resource: 'ClientsDemmands',
-    navLink: '/apps/requesthotel/list',
-    icon: <ShoppingBag size={20} />
-  },
-  {
-    id: 'clientsdemmands',
-    title: 'Clients requests',
-    action: 'manage',
-    resource: 'ClientsDemmands',
-    navLink: '/apps/demmands/listRequests',
-    icon: <ShoppingBag size={20} />
+    icon: <Box size={20} />,
+    children: [
+      {
+        id: 'RequestHotel',
+        title: 'Request Hotel',
+        action: 'manage',
+        resource: 'ClientsDemmands',
+        navLink: '/apps/requesthotel/list',
+        icon: <Circle size={12} />
+      },
+      {
+        id: 'clientsdemmands',
+        title: 'Clients requests',
+        action: 'manage',
+        resource: 'ClientsDemmands',
+        navLink: '/apps/demmands/listRequests',
+        icon: <Circle size={12} />
+      },
+      {
+        id: 'clientsdemmands',
+        title: 'Report',
+        action: 'manage',
+        resource: 'ClientsDemmands',
+        navLink: '/apps/report/report',
+        icon: <Circle size={12} />
+      }
+    ]
   },
   {
     id: 'categories',
@@ -114,51 +147,51 @@ export default [
     id: 'roomService',
     title: 'Room Service',
     action: 'read',
-    resource: 'Categories',
+    resource: 'RoomService',
     icon: <Box size={20} />,
-     children: [ 
+    children: [
       {
         id: 'categories',
         title: 'Categories',
         icon: <Circle size={12} />,
         navLink: '/apps/categoryRoomService/list',
         action: 'manage',
-        resource: 'Categories'
+        resource: 'RoomService'
       },
-       {
+      {
         id: 'articles',
         title: 'Articles',
         icon: <Circle size={12} />,
         navLink: '/apps/articlesRoomService/list',
-         action: 'manage', 
-         resource: 'Articles'
+        action: 'manage',
+        resource: 'RoomService'
       }
-    ] 
+    ]
   },
   {
     id: 'Spa',
     title: 'Spa',
     action: 'read',
-    resource: 'Categories',
+    resource: 'SPA',
     icon: <Box size={20} />,
-     children: [ 
+    children: [
       {
         id: 'categories',
         title: 'Categories',
         icon: <Circle size={12} />,
         navLink: '/apps/categoriesSpa/list',
         action: 'manage',
-        resource: 'Categories'
+        resource: 'SPA'
       },
-       {
+      {
         id: 'articles',
         title: 'Articles',
         icon: <Circle size={12} />,
         navLink: '/apps/articlesSpa/list',
-         action: 'manage', 
-         resource: 'Articles'
+        action: 'manage',
+        resource: 'SPA'
       }
-    ] 
+    ]
   }
 
 ]

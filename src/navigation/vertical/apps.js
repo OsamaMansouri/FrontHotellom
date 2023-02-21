@@ -1,4 +1,4 @@
-import { ShoppingCart, Package, FileText, Columns, Users, Circle, ShoppingBag, Award, Settings, Type } from 'react-feather'
+import { ShoppingCart, Package, FileText, Columns, Users, Circle, ShoppingBag, Award, Settings, Type, Box } from 'react-feather'
 
 export default [
   {
@@ -30,13 +30,54 @@ export default [
     navLink: '/apps/demmands/list',
     icon: <ShoppingBag size={20} />
   },
+  // {
+  //   id: 'RequestHotel',
+  //   title: 'Request',
+  //   action: 'manage',
+  //   resource: 'ClientsDemmands',
+  //   navLink: '/apps/requesthotel/list',
+  //   icon: <ShoppingBag size={20} />
+  // },
+  // {
+  //   id: 'clientsdemmands',
+  //   title: 'Clients requests',
+  //   action: 'manage',
+  //   resource: 'ClientsDemmands',
+  //   navLink: '/apps/demmands/listRequests',
+  //   icon: <ShoppingBag size={20} />
+  // },
   {
-    id: 'clientsdemmands',
-    title: 'Clients requests',
-    action: 'manage',
+    id: 'Request',
+    title: 'Request',
+    action: 'read',
     resource: 'ClientsDemmands',
-    navLink: '/apps/demmands/listRequests',
-    icon: <ShoppingBag size={20} />
+    icon: <Box size={20} />,
+    children: [
+      {
+        id: 'RequestHotel',
+        title: 'Request Hotel',
+        action: 'manage',
+        resource: 'ClientsDemmands',
+        navLink: '/apps/requesthotel/list',
+        icon: <Circle size={12} />
+      },
+      {
+        id: 'clientsdemmands',
+        title: 'Clients requests',
+        action: 'manage',
+        resource: 'ClientsDemmands',
+        navLink: '/apps/demmands/listRequests',
+        icon: <Circle size={12} />
+      },
+      {
+        id: 'clientsdemmands',
+        title: 'Report',
+        action: 'manage',
+        resource: 'ClientsDemmands',
+        navLink: '/apps/report/report',
+        icon: <Circle size={12} />
+      }
+    ]
   },
   {
     id: 'categories',
@@ -64,7 +105,7 @@ export default [
   }, */
   {
     id: 'staffs',
-    title: 'Staffs',
+    title: 'Users',
     icon: <Users size={20} />,
     action: 'read',
     resource: 'Staffs',
@@ -101,6 +142,56 @@ export default [
     resource: 'Managers',
     navLink: '/apps/managers/list',
     icon: <Users size={20} />
+  },
+  {
+    id: 'roomService',
+    title: 'Room Service',
+    action: 'read',
+    resource: 'RoomService',
+    icon: <Box size={20} />,
+    children: [
+      {
+        id: 'categories',
+        title: 'Categories',
+        icon: <Circle size={12} />,
+        navLink: '/apps/categoryRoomService/list',
+        action: 'manage',
+        resource: 'RoomService'
+      },
+      {
+        id: 'articles',
+        title: 'Articles',
+        icon: <Circle size={12} />,
+        navLink: '/apps/articlesRoomService/list',
+        action: 'manage',
+        resource: 'RoomService'
+      }
+    ]
+  },
+  {
+    id: 'Spa',
+    title: 'Spa',
+    action: 'read',
+    resource: 'SPA',
+    icon: <Box size={20} />,
+    children: [
+      {
+        id: 'categories',
+        title: 'Categories',
+        icon: <Circle size={12} />,
+        navLink: '/apps/categoriesSpa/list',
+        action: 'manage',
+        resource: 'SPA'
+      },
+      {
+        id: 'articles',
+        title: 'Articles',
+        icon: <Circle size={12} />,
+        navLink: '/apps/articlesSpa/list',
+        action: 'manage',
+        resource: 'SPA'
+      }
+    ]
   }
 
 ]

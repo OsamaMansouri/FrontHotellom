@@ -44,6 +44,7 @@ const CategoriesList = () => {
         .then(res => { 
           setData(res.data)
           setDataCount(res.data.length)
+          console.log(res.data)
         })
         .catch(err => { console.log(err) })
     }
@@ -105,7 +106,7 @@ const CategoriesList = () => {
       sortable: true,
       cell: row => (
         <div className='d-flex justify-content-left align-items-center'>
-          <Avatar className='mr-1' img={row.icon} width='32' height='32' />
+          <Avatar className='mr-1' img={'https://api.hotellom.com/img/'.concat(row.icon)} width='32' height='32' />
           <div className='d-flex flex-column'>
             <Link
               to={`/apps/categories/edit/${row.id}`}
@@ -116,6 +117,13 @@ const CategoriesList = () => {
           </div>
         </div>
       )
+    },
+    {
+      name: 'Shop Type',
+      minWidth: '172px',
+      selector: 'shop_id.name',
+      sortable: true,
+      cell: row => row.shop_id.name
     },
     {
       name: 'Time start',

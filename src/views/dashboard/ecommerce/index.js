@@ -3,8 +3,8 @@ import classnames from 'classnames'
 import Avatar from '@components/avatar'
 import { useState, useEffect, useContext } from 'react'
 import { Input, Table, Card, CardHeader, Label, CardTitle, CardBody, CardText, Row, Col, Media,
-  UncontrolledButtonDropdown, Button } from 'reactstrap'
-import { User, TrendingUp, Box, DollarSign, MessageSquare, ShoppingBag, Heart, Truck, Eye, Award, Star } from 'react-feather'
+  UncontrolledButtonDropdown } from 'reactstrap'
+import { User, TrendingUp, DollarSign, ShoppingBag, Award, Star } from 'react-feather'
 import { ThemeColors } from '@src/utility/context/ThemeColors'
 import '@styles/react/libs/charts/apex-charts.scss'
 import '@styles/base/pages/dashboard-ecommerce.scss'
@@ -13,7 +13,7 @@ import { Bar } from 'react-chartjs-2'
 // ** Custom Hooks
 import { useSkin } from '@hooks/useSkin'
 import medal from '@src/assets/images/illustration/badge.svg'
-import StatsVertical from '@components/widgets/stats/StatsVertical'
+//import StatsVertical from '@components/widgets/stats/StatsVertical'
 import Earnings from '@src/views/ui-elements/cards/analytics/Earnings'
 
 const EcommerceDashboard = () => {
@@ -85,7 +85,7 @@ const EcommerceDashboard = () => {
       .get(`/topClients?hotel_id=${user.hotel_id}`, config)
       .then(res => { 
         setClients(res.data)
-        setClientName(res.data[0].name)
+        //setClientName(res.data[0].name)
        })
       .catch(err => { console.log(err.response.data) })
 
@@ -518,7 +518,7 @@ const EcommerceDashboard = () => {
   // ** Top Articles Data
   const renderHotels = () => {
     return (
-        <Col xl='6' md='6' xs='12'>
+        <Col xl='12' md='12' xs='12'>
           <Card className='card-statistics'>
             <CardBody className='statistics-body'>
               <Row>
@@ -532,7 +532,7 @@ const EcommerceDashboard = () => {
                         value={hotel.id}
                         onChange={handelOnChange}
                     >
-                        <option value='0' selected>Select Hotel</option>
+                        <option value='0' defaultValue>Select Hotel</option>
                         {
                             hotels.map(hotel => <option key={hotel.id} value={hotel.id}>{hotel.name}</option>)
                         }
@@ -597,7 +597,7 @@ const EcommerceDashboard = () => {
                   color='primary'
                   onChange={handelStatisticsData}
                   >
-                      <option value='day' selected>Daily</option>
+                      <option value='day' defaultValue>Daily</option>
                       <option value='week'>Weekly</option>
                       <option value='month'>Monthly</option>
                       <option value='year'>Yearly</option>
@@ -628,7 +628,7 @@ const EcommerceDashboard = () => {
                         color='primary'
                         onChange={handelAverageData}
                         >
-                            <option value='day' selected>Daily</option>
+                            <option value='day' defaultValue>Daily</option>
                             <option value='week'>Weekly</option>
                             <option value='month'>Monthly</option>
                             <option value='year'>Yearly</option>
@@ -660,7 +660,7 @@ const EcommerceDashboard = () => {
                         color='primary'
                         onChange={handelProfitData}
                         >
-                            <option value='day' selected>Daily</option>
+                            <option value='day' defaultValue>Daily</option>
                             <option value='week'>Weekly</option>
                             <option value='month'>Monthly</option>
                             <option value='year'>Yearly</option>

@@ -28,12 +28,11 @@ const RoomsList = () => {
     const [searchValue, setSearchValue] = useState('')
     const [filteredData, setFilteredData] = useState([])
     const MySwal = withReactContent(Swal)
-
+    const {Id, code} = useParams()
     //** ComponentDidMount
     useEffect(() => {
         if (isUserLoggedIn() !== null) {
             const user = JSON.parse(localStorage.getItem('userData'))
-
             const config = {
                 headers: {
                     Authorization: `Bearer ${user.accessToken}`
@@ -41,15 +40,38 @@ const RoomsList = () => {
             }
 
             // fetch rooms
-            axiosInstance.get(`/getRoomsByHotel?web=5`, config).then(res => {
+            axiosInstance.get(`/getRoomsByHotel/${Id}?web=5`, config).then(res => {
                 setRooms(res.data)
                 setData(res.data)
                 setDataCount(res.data.length)
+                console.log(res.data)
             }).catch(err => {
                 console.log(err)
             })
         }
     }, [])
+
+    const donwloadQrcode = async (source) => {
+
+        const fileName = source.split('/').pop()
+        const el = document.createElement("a")
+        el.setAttribute("href", source)
+        el.setAttribute("target", '_black')
+        el.setAttribute("download", fileName)
+        document.body.appendChild(el)
+        el.click()
+        el.remove()
+      }
+
+      const openInNewTab = url => {
+        window.open(url, '_blank', 'noopener,noreferrer')
+      }
+      
+      const Submit = (room_number, qrcode) => {
+        const user = JSON.parse(localStorage.getItem('userData'))
+        openInNewTab(`https://api.hotellom.com/pdfroom/${code}/${room_number}/${qrcode}`)
+        
+      }
 
     // ** Function in get data on page change
     const handlePagination = page => {
@@ -187,11 +209,37 @@ const RoomsList = () => {
                 },
                 {
                     name: 'Actions',
-                    minWidth: '100px',
+                    minWidth: '350px',
+                    cell: row => (
+                                <div className='d-flex align-items-space-between'>
+                                    <a className="btn btn-danger"  onClick={() => deleteRoom(row.id)}>delete</a>
+                                    <Link to={`/apps/rooms/edit/${Id}/${row.id}`}>
+                                        <Button.Ripple className="ml-1" color='primary'>
+                                            Edit
+                                        </Button.Ripple>
+                                    </Link>
+                                    <Button.Ripple 
+                                    className="ml-1"
+                                        color='primary'
+                                        onClick={(e) => { Submit(row.room_number, row.qrcode) }}
+                                        >
+                                        Generate PDF
+                                    </Button.Ripple>
+                                
+                                </div>
+                                
+                               
+                    )
+                },
+                {
+                    name: 'Qrcode',
+                    minWidth: '100px',  
                     cell: row => (
                                 <div className='d-flex align-items-center'>
-                                    <a className="btn btn-danger" onClick={() => deleteRoom(row.id)}>delete</a>
+                                   {/* { rooms.map((item) => { return (<a className="btn btn-success" onClick={(e) => donwloadQrcode(`https://api.hotellom.com/img/hotels/hotel-${row.reference}.png`)}>Qrcode</a>) }) } */}
+                                   <a className="btn btn-success" onClick={(e) => donwloadQrcode(`https://api.hotellom.com/img/rooms/room-${row.room_number}${row.qrcode}.png`)}>Qrcode</a>
                                 </div>
+                               
                     )
                 }
             ]
@@ -220,11 +268,11 @@ const RoomsList = () => {
                         xl='6'
                         className='d-flex align-items-sm-center justify-content-lg-end justify-content-start flex-lg-nowrap flex-wrap flex-sm-row flex-column pr-lg-1 p-0 mt-lg-0 mt-1'
                         >
-                        {/* <Link to="/apps/rooms/add">
+                         <Link to={`/apps/rooms/add/${Id}`}>
                             <Button.Ripple color='primary'>
                             Add New Room
                             </Button.Ripple>
-                        </Link> */}
+                        </Link>
                         </Col>
                     </Row>
                     </div>

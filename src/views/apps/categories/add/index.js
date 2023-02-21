@@ -12,6 +12,7 @@ import Dropzone from 'react-dropzone'
 import ReactCrop from 'react-image-crop'
 import 'react-image-crop/dist/ReactCrop.css'
 import { isBase64, image64toCanvasRef  } from '../../utils/checkImage'
+import { type } from 'jquery'
 
 const ToastContent = ({ category }) => (
     <>
@@ -35,6 +36,7 @@ const CategorieAdd = () => {
     const history = useHistory()
     const [imgSrc, setImgSrc] = useState(null)
     const [imgSrcFinal, setImgSrcFinal] = useState(null)
+    const [shops, setShops] = useState([])
     const [crop, setCrop] = useState({
                                 aspect: 1 / 1,
                                 width: 200,
@@ -52,6 +54,12 @@ const CategorieAdd = () => {
         if (isUserLoggedIn() !== null) {
             setUserData(JSON.parse(localStorage.getItem('userData')))
         }
+        axiosInstance
+        .get(`/shops?web=5`)
+        .then(res => { 
+          setShops(res.data)
+        })
+        .catch(err => { console.log(err) })
     }, [])
 
     const verifyFile = (files) => {
@@ -127,10 +135,11 @@ const CategorieAdd = () => {
         }
         formData.append('hotel_id', userData.hotel_id)
         if (category.name) formData.append('name', category.name)
+        if (category.shop_id) formData.append('shop_id', category.shop_id)
         if (category.Sequence) formData.append('Sequence', category.Sequence)
         if (category.startTime) formData.append('startTime', category.startTime)
         if (category.endTime) formData.append('endTime', category.endTime)
-        /* if (category.icon) formData.append('icon', category.icon) */
+        if (category.icon) formData.append('icon', category.icon)
 
         axiosInstance.post('/categories', formData, config).then(res => {
             toast.success(
@@ -151,7 +160,7 @@ const CategorieAdd = () => {
                     <Row>
                         <Col sm="8">
                             <Row>
-                                <Col sm='8'>
+                                <Col sm='4'>
                                     <Label for="name">Name</Label>
                                     <Input
                                         invalid={errors.name !== undefined}
@@ -163,6 +172,23 @@ const CategorieAdd = () => {
                                         onChange={(e) => setCategory({ ...category, name: e.target.value })}
                                     />
                                     {errors.name && <FormFeedback>{errors.name[0]}</FormFeedback>}
+                                </Col>
+                                <Col sm='4'>
+                                    <Label for="types">Select Shop Type</Label>
+                                    <Input
+                                        type="select"
+                                        name="shop_id"
+                                        id="shop_id"
+                                        required
+                                        onChange={(e) => setCategory({ ...category, shop_id: e.target.value})}
+                                        value={category.shop_id}
+                                    >
+                                        <option value='0' selected>Select type</option>
+                                        {
+                                            shops.map(shop => <option key={shop.id} value={shop.id}>{shop.name}</option>)
+                                        }
+                                       {console.log(category.shop_id)}
+                                    </Input>
                                 </Col>
                                 <Col sm='4'>
                                     <Label for="sequence">Sequence</Label>

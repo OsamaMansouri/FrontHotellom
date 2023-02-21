@@ -122,7 +122,7 @@ const RequestAdd = () => {
                                             invalid={errors.sequence !== undefined}
                                             type="number"
                                             id="sequence"
-                                            placeholder="Enter the reques sequence"
+                                            placeholder="Enter the request sequence"
                                             onChange={(e) => setDemmand({ ...demmand, sequence: e.target.value })}
                                         />
                                         {errors.sequence && <FormFeedback>{errors.sequence[0]}</FormFeedback>}

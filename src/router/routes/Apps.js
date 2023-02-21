@@ -176,12 +176,30 @@ const AppRoutes = [
     }
   },
   {
-    path: '/apps/user/rooms/:id',
+    path: '/apps/user/rooms/:Id/:code',
     component: lazy(() => import('../../views/apps/user/rooms')),
     meta: {
       action: 'read',
       resource: 'Users',
       navLink: '/apps/user/rooms'
+    }
+  },
+  {
+    path: '/apps/rooms/add/:id',
+    component: lazy(() => import('../../views/apps/user/rooms/add')),
+    meta: {
+      action: 'edit',
+      resource: 'Users',
+      navLink: '/apps/rooms/add'
+    }
+  },
+  {
+    path: '/apps/rooms/edit/:id/:room_id',
+    component: lazy(() => import('../../views/apps/user/rooms/edit')),
+    meta: {
+      action: 'edit',
+      resource: 'Users',
+      navLink: '/apps/rooms/edit'
     }
   },
   {
@@ -219,7 +237,57 @@ const AppRoutes = [
       resource: 'Categories'
     }
   },
-
+    // Categories Roomservice 
+  {
+    path: '/apps/categoryRoomService/list',
+    component: lazy(() => import('../../views/apps/categoryRoomService/list')),
+    meta: {
+      action: 'read',
+      resource: 'RoomService'
+    }
+  },
+  {
+    path: '/apps/categoryRoomService/edit/:id',
+    component: lazy(() => import('../../views/apps/categoryRoomService/edit')),
+    meta: {
+      action: 'edit',
+      resource: 'RoomService'
+    }
+  },
+  {
+    path: '/apps/categoryRoomService/add',
+    component: lazy(() => import('../../views/apps/categoryRoomService/add')),
+    meta: {
+      action: 'edit',
+      resource: 'RoomService'
+    }
+  },
+  // Categories Spa
+  {
+    path: '/apps/categoriesSpa/list',
+    component: lazy(() => import('../../views/apps/categoriesSpa/list')),
+    meta: {
+      action: 'read',
+      resource: 'SPA'
+    }
+  },
+  {
+    path: '/apps/categoriesSpa/add',
+    component: lazy(() => import('../../views/apps/categoriesSpa/add')),
+    meta: {
+      action: 'edit',
+      resource: 'SPA'
+    }
+  },
+  {
+    path: '/apps/categoriesSpa/edit/:id',
+    component: lazy(() => import('../../views/apps/categoriesSpa/edit')),
+    meta: {
+      action: 'edit',
+      resource: 'SPA'
+    }
+  },
+  
   // Articles
   {
     path: '/apps/articles/list',
@@ -240,6 +308,59 @@ const AppRoutes = [
   {
     path: '/apps/articles/edit/:id',
     component: lazy(() => import('../../views/apps/articles/edit')),
+    meta: {
+      action: 'edit',
+      resource: 'Articles'
+    }
+  }, 
+  // Articles Roomservice 
+
+  {
+    path: '/apps/articlesRoomService/list',
+    component: lazy(() => import('../../views/apps/articlesRoomService/list')),
+    meta: {
+      action: 'read',
+      resource: 'Articles'
+    }
+  },
+  {
+    path: '/apps/articlesRoomService/add',
+    component: lazy(() => import('../../views/apps/articlesRoomService/add')),
+    meta: {
+      action: 'edit',
+      resource: 'Articles'
+    }
+  },
+  {
+    path: '/apps/articlesRoomService/edit/:id',
+    component: lazy(() => import('../../views/apps/articlesRoomService/edit')),
+    meta: {
+      action: 'edit',
+      resource: 'Articles'
+    }
+  },
+
+  // Articles Spa
+
+  {
+    path: '/apps/articlesSpa/list',
+    component: lazy(() => import('../../views/apps/articlesSpa/list')),
+    meta: {
+      action: 'read',
+      resource: 'Articles'
+    }
+  },
+  {
+    path: '/apps/articlesSpa/add',
+    component: lazy(() => import('../../views/apps/articlesSpa/add')),
+    meta: {
+      action: 'edit',
+      resource: 'Articles'
+    }
+  },
+  {
+    path: '/apps/articlesSpa/edit/:id',
+    component: lazy(() => import('../../views/apps/articlesSpa/edit')),
     meta: {
       action: 'edit',
       resource: 'Articles'
@@ -402,7 +523,34 @@ const AppRoutes = [
     component: lazy(() => import('../../views/apps/user/profile')),
     meta: {
       action: 'read',
-      resource: 'Categories'
+      resource: 'Dashboards'
+    }
+  },
+   //Report
+   {
+    path: '/apps/report/report',
+    component: lazy(() => import('../../views/apps/report/report')),
+    meta: {
+      action: 'manage',
+      resource: 'ClientsDemmands'
+    }
+  },
+  //Request Hotel
+
+  {
+    path: '/apps/requesthotel/list',
+    component: lazy(() => import('../../views/apps/requesthotel/list')),
+    meta: {
+      action: 'read',
+      resource: 'ClientsDemmands'
+    }
+  },
+  {
+    path: '/apps/requesthotel/add',
+    component: lazy(() => import('../../views/apps/requesthotel/add')),
+    meta: {
+      action: 'edit',
+      resource: 'ClientsDemmands'
     }
   },
 

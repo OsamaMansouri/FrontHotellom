@@ -11,7 +11,7 @@ import ReactPaginate from 'react-paginate'
 import { ChevronDown } from 'react-feather'
 import DataTable from 'react-data-table-component'
 import { Card, Badge, Input, Row, Col, Label, CardBody
-   , TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap'
+   , TabContent, TabPane, Nav, NavItem, NavLink, Button } from 'reactstrap'
 // ** Styles
 import '@styles/react/libs/react-select/_react-select.scss'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
@@ -52,6 +52,17 @@ const ArticlesList = () => {
 
   }, [])
 
+  const openInNewTab = url => {
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
+  const Submit = (status, message, user_name, room_number, demmand_name, demmand_option, created_at, updated_at, done_by) => {
+    const user = JSON.parse(localStorage.getItem('userData'))
+
+    const val = `${status}/${message}/${user_name}/${room_number}/${demmand_name}/${demmand_option}/${created_at}/${updated_at}/${done_by}`
+    openInNewTab(`http://localhost:8000/demmanduserreport/${val}`)
+  }
+
   const columnsRequest = [
     {
       name: 'Title',
@@ -90,15 +101,29 @@ const ArticlesList = () => {
       cell: row => (
         <Badge color={`light-${row.status === "pending" ? "warning" : "success"}`}>{row.status}</Badge>
       )
-    },
-    {
-      name: 'Option',
-      selector: 'option',
-      sortable: true,
-      cell: row => (
-        <span className='font-weight-bold' >{`${row.option.name}`}</span>
-      )
     }
+    // {
+    //   name: 'Actions',
+    //   minWidth: '350px',
+    //   cell: row => (
+    //     <div className='d-flex align-items-space-between'>
+    //       <Button.Ripple
+    //         className="ml-1"
+    //         color='success'
+    //         onClick={(e) => {
+    //           Submit(row.status, row.message, row.user.name, row.room.room_number,
+    //             row.demmand.name, row.option ? row.option.name : 'no option', row.created_at,
+    //             row.updated_at ? row.updated_at : 'pending', row.done_by ? row.done_by.name : 'pending')
+    //         }}
+    //       >
+    //         Report
+    //       </Button.Ripple>
+
+    //     </div>
+
+
+    //   )
+    // }
   
   ]
 

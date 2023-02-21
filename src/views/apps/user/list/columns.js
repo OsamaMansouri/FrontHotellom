@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom'
 // ** Custom Components
 import Avatar from '@components/avatar'
+import axiosInstance from '../../../../@core/api/axiosInstance'
 // ** Store & Actions
 import { getUser, deleteUser } from '../store/action'
 import { store } from '@store/storeConfig/store'
@@ -79,7 +80,15 @@ const donwloadQrcode = async (source) => {
   el.click()
   el.remove()
 }
+const openInNewTab = url => {
+  window.open(url, '_blank', 'noopener,noreferrer')
+}
 
+const Submit = (reference, code, name) => {
+
+  openInNewTab(`https://api.hotellom.com/pdfhotel/${code}/${reference}/${name}`)
+
+}
 export const columns = [
   {
     name: 'Name',
@@ -118,8 +127,14 @@ export const columns = [
     cell: row => row.reason
   },
   {
+    name: 'Code Hotel',
+    selector: 'code',
+    sortable: true,
+    cell: row => row.code
+  },
+  {
     name: 'Actions',
-    minWidth: '350px',
+    minWidth: '500px',
     cell: row => (
       <div>
         <div className='d-flex align-items-space-between'>
@@ -128,7 +143,7 @@ export const columns = [
                 Edit
               </Button.Ripple>
             </Link>
-            <Link to={`/apps/user/rooms/${row.id}`}>
+            <Link to={`/apps/user/rooms/${row.id}/${row.code}`}>
               <Button.Ripple style={btnStyle} color='secondary'>
                 Rooms
               </Button.Ripple>
@@ -142,6 +157,15 @@ export const columns = [
                 View QR
               </Button.Ripple>
             </Link>
+            
+              <Button.Ripple 
+                style={btnStyle} 
+                color='primary'
+                onClick={(e) => { Submit(row.reference, row.code, row.name) }}
+                >
+                Generate PDF
+              </Button.Ripple>
+          
         </div>
       </div>
       

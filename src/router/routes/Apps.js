@@ -243,7 +243,7 @@ const AppRoutes = [
     component: lazy(() => import('../../views/apps/categoryRoomService/list')),
     meta: {
       action: 'read',
-      resource: 'Categories'
+      resource: 'RoomService'
     }
   },
   {
@@ -251,7 +251,7 @@ const AppRoutes = [
     component: lazy(() => import('../../views/apps/categoryRoomService/edit')),
     meta: {
       action: 'edit',
-      resource: 'Categories'
+      resource: 'RoomService'
     }
   },
   {
@@ -259,7 +259,7 @@ const AppRoutes = [
     component: lazy(() => import('../../views/apps/categoryRoomService/add')),
     meta: {
       action: 'edit',
-      resource: 'Categories'
+      resource: 'RoomService'
     }
   },
   // Categories Spa
@@ -268,7 +268,7 @@ const AppRoutes = [
     component: lazy(() => import('../../views/apps/categoriesSpa/list')),
     meta: {
       action: 'read',
-      resource: 'Categories'
+      resource: 'SPA'
     }
   },
   {
@@ -276,7 +276,7 @@ const AppRoutes = [
     component: lazy(() => import('../../views/apps/categoriesSpa/add')),
     meta: {
       action: 'edit',
-      resource: 'Categories'
+      resource: 'SPA'
     }
   },
   {
@@ -284,7 +284,7 @@ const AppRoutes = [
     component: lazy(() => import('../../views/apps/categoriesSpa/edit')),
     meta: {
       action: 'edit',
-      resource: 'Categories'
+      resource: 'SPA'
     }
   },
   
@@ -523,7 +523,16 @@ const AppRoutes = [
     component: lazy(() => import('../../views/apps/user/profile')),
     meta: {
       action: 'read',
-      resource: 'Categories'
+      resource: 'Dashboards'
+    }
+  },
+   //Report
+   {
+    path: '/apps/report/report',
+    component: lazy(() => import('../../views/apps/report/report')),
+    meta: {
+      action: 'manage',
+      resource: 'ClientsDemmands'
     }
   },
   //Request Hotel

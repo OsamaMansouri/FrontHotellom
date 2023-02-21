@@ -101,29 +101,29 @@ const ArticlesList = () => {
       cell: row => (
         <Badge color={`light-${row.status === "pending" ? "warning" : "success"}`}>{row.status}</Badge>
       )
-    },
-    {
-      name: 'Actions',
-      minWidth: '350px',
-      cell: row => (
-        <div className='d-flex align-items-space-between'>
-          <Button.Ripple
-            className="ml-1"
-            color='success'
-            onClick={(e) => {
-              Submit(row.status, row.message, row.user.name, row.room.room_number,
-                row.demmand.name, row.option ? row.option.name : 'no option', row.created_at,
-                row.updated_at ? row.updated_at : 'pending', row.done_by ? row.done_by.name : 'pending')
-            }}
-          >
-            Report
-          </Button.Ripple>
-
-        </div>
-
-
-      )
     }
+    // {
+    //   name: 'Actions',
+    //   minWidth: '350px',
+    //   cell: row => (
+    //     <div className='d-flex align-items-space-between'>
+    //       <Button.Ripple
+    //         className="ml-1"
+    //         color='success'
+    //         onClick={(e) => {
+    //           Submit(row.status, row.message, row.user.name, row.room.room_number,
+    //             row.demmand.name, row.option ? row.option.name : 'no option', row.created_at,
+    //             row.updated_at ? row.updated_at : 'pending', row.done_by ? row.done_by.name : 'pending')
+    //         }}
+    //       >
+    //         Report
+    //       </Button.Ripple>
+
+    //     </div>
+
+
+    //   )
+    // }
   
   ]
 

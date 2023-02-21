@@ -27,6 +27,7 @@ const StaffAdd = () => {
     // ** State
     const [userData, setUserData] = useState(null)
     const [staff, setStaff] = useState({})
+    const [departement, setdepartement] = useState('housekeeping')
     const [errors, setErrors] = useState({})
     const [showhide, setShowhide] = useState('')
     const history = useHistory()
@@ -48,7 +49,7 @@ const StaffAdd = () => {
 
         const formData = new FormData()
         formData.append('hotel_id', userData.hotel_id)
-        formData.append('departement', staff.departement)
+        formData.append('departement', departement)
         if (staff.name) formData.append('name', staff.name)
         if (staff.email) formData.append('email', staff.email)
         if (staff.role) formData.append('role', staff.role)
@@ -126,20 +127,19 @@ const StaffAdd = () => {
                                 <option value="receptionist">Receptionist</option>
                                 <option value="rooms-servant">Rooms service</option>
                                 <option value="housekeeping">HK / Eng</option>
-                                <option value="super_manager">Manager</option>
+                                <option value="manager">Manager</option>
                             </select>
                             {errors.role && <FormFeedback> {errors.role[0]} </FormFeedback>}
                         </Col>
                         {
-                          showhide === 'super_manager' && (
+                          showhide === 'manager' && (
                             <Col sm='3'>
-                            <Label for="role">Department</Label>
-                            <select  name="role" className="form-control" id="role" onChange={(e) => setStaff({ ...staff, departement: e.target.value })}>
-                                <option value='0' disabled>Select Department</option>
+                            <Label for="department">Department</Label>
+                            <select defaultValue={'housekeeping'}  name="department" className="form-control" id="department" onChange={(e) => setdepartement(e.target.value)}>
                                 <option value="housekeeping">HK / Eng</option>
                                 <option value="rooms-servant">Rooms service</option> 
                             </select>
-                            {errors.role && <FormFeedback> {errors.role[0]} </FormFeedback>}
+                            {errors.department && <FormFeedback> {errors.department[0]} </FormFeedback>}
                             </Col>
                           ) 
                         }
